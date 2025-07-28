@@ -305,6 +305,16 @@ body.car-theme {
 }
 
 
+.visitor-icon {
+  stroke: var(--primary-color);
+}
+
+
+.visitor-count {
+  color: var(--primary-color);
+}
+
+
 .volume-icon {
   stroke: var(--primary-color);
 }
