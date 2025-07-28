@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const startText = document.getElementById('start-text');
   const profileName = document.getElementById('profile-name');
   const profileBio = document.getElementById('profile-bio');
+  const visitorCount = document.getElementById('visitor-count');
   const backgroundMusic = document.getElementById('background-music');
   const hackerMusic = document.getElementById('hacker-music');
   const rainMusic = document.getElementById('rain-music');
@@ -113,6 +114,29 @@ document.addEventListener('DOMContentLoaded', () => {
     startCursorVisible = !startCursorVisible;
     startText.textContent = startTextContent + (startCursorVisible ? '|' : ' ');
   }, 500);
+
+
+function initializeVisitorCounter() {
+    const visitorCount = document.getElementById('visitor-count');
+    if (!visitorCount) {
+        console.error('Visitor count element not found!');
+        return;
+    }
+
+    let totalVisitors = localStorage.getItem('totalVisitorCount');
+    if (totalVisitors === null) {
+        totalVisitors = 159;
+    } else {
+        totalVisitors = parseInt(totalVisitors, 10);
+    }
+
+    totalVisitors += 1;
+    localStorage.setItem('totalVisitorCount', totalVisitors.toString());
+    visitorCount.textContent = totalVisitors.toLocaleString('en-US');
+}
+
+
+  initializeVisitorCounter();
 
 
   startScreen.addEventListener('click', () => {
@@ -302,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
       profilePicture.style.opacity = '1';
       profileName.style.opacity = '1';
       profileBio.style.opacity = '1';
+      visitorCount.style.opacity = '1';
     } else {
       profileBlock.style.background = `rgba(0, 0, 0, ${opacity})`;
       profileBlock.style.borderOpacity = opacity;
